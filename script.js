@@ -75,8 +75,24 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function filterData(e) {
-    let enteredInput = e.target.value;
-    enteredInput = enteredInput.charAt(0).toUpperCase() + enteredInput.slice(1);
+    let enteredInput =
+      e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
+    let allPosts = document.querySelectorAll(".post");
+    allPosts.forEach((post) => {
+      let postTitle = document.querySelector(".postTitle").innerText.toUpperCase();
+
+      let postDescription = document.querySelector(".postDescription").innerText.toUpperCase();
+
+      if (
+        postTitle.indexOf(enteredInput) > -1 ||
+        postDescription.indexOf(enteredInput) > -1
+      ) {
+        post.style.display = "flex";
+      } else {
+        post.style.display = "none";
+      }
+    });
+    // console.log(enteredInput)
   }
 
   search.addEventListener("input", filterData);
@@ -91,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       //   alert("Touched Bottom");
       loaderShowing();
-        fetchData();
+      fetchData();
     }
   });
 });
