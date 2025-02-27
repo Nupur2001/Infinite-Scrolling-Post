@@ -79,7 +79,7 @@ h1 {
 
 .loading {
   position: fixed;
-  bottom: 50px;
+  bottom: 55px;
   left: 750px;
   display: flex;
   gap: 12px;
@@ -87,7 +87,6 @@ h1 {
   z-index: 1;
 }
 .loading div {
-  /* margin: 10px 0; */
   width: 20px;
   height: 20px;
   background-color: #fff;
