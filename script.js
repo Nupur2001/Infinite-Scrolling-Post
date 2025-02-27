@@ -116,6 +116,6 @@ document.addEventListener("DOMContentLoaded", () => {
       //   alert("Touched Bottom");
       loaderShowing();
     }
-    fetchData();
+    //fetchData();
 });
 });
