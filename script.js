@@ -79,9 +79,13 @@ document.addEventListener("DOMContentLoaded", () => {
       e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
     let allPosts = document.querySelectorAll(".post");
     allPosts.forEach((post) => {
-      let postTitle = document.querySelector(".postTitle").innerText.toUpperCase();
+      let postTitle = document
+        .querySelector(".postTitle")
+        .innerText.toUpperCase();
 
-      let postDescription = document.querySelector(".postDescription").innerText.toUpperCase();
+      let postDescription = document
+        .querySelector(".postDescription")
+        .innerText.toUpperCase();
 
       if (
         postTitle.indexOf(enteredInput) > -1 ||
@@ -90,6 +94,11 @@ document.addEventListener("DOMContentLoaded", () => {
         post.style.display = "flex";
       } else {
         post.style.display = "none";
+        postContainer.innerHTML=`<h2>No post found!!</h2>`
+        var newLocation = window.location;
+        setInterval(()=>{
+            newLocation
+        },1000)
       }
     });
     // console.log(enteredInput)
