@@ -35,8 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       let circle = document.createElement("span");
       circle.classList.add("circle");
-      circle.textContent = postNumber;
-      postNumber++;
+      circle.textContent = postNumber++;
 
       let postInfo = document.createElement("div");
       postInfo.classList.add("postInfo");
@@ -67,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       loading.classList.remove("show");
       setTimeout(() => {
-        currentPage++;
+        // currentPage++;
         fetchData();
       }, 500);
       isLoading = false;
@@ -116,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       //   alert("Touched Bottom");
       loaderShowing();
-      //   fetchData();
     }
-  });
+    fetchData();
+});
 });
