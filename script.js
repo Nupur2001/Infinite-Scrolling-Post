@@ -1,17 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
   let search = document.querySelector(".search");
   let postContainer = document.querySelector(".postContainer");
+
   // let url = "https://jsonplaceholder.typicode.com/posts";
 
   let currentPage = 1;
-  let numPost=5
-  let postNumber=1
+  let numPost = 5;
+  let postNumber = 1;
   let isFetching = false;
   let hasMore = true;
+  let isLoading = false;
 
-function firstLetterCapitalize(letter){
-return letter.charAt(0).toUpperCase()+letter.splice(0)
-}
+  function firstLetterCapitalize(letter) {
+    return letter.charAt(0).toUpperCase() + letter.slice(1);
+  }
 
   async function fetchData() {
     isFetching = true;
@@ -33,23 +35,23 @@ return letter.charAt(0).toUpperCase()+letter.splice(0)
 
       let circle = document.createElement("span");
       circle.classList.add("circle");
-      circle.textContent=postNumber
-      postNumber++
+      circle.textContent = postNumber;
+      postNumber++;
 
       let postInfo = document.createElement("div");
       postInfo.classList.add("postInfo");
 
       let postTitle = document.createElement("h2");
       postTitle.classList.add("postTitle");
-      postTitle.textContent = `${postData.title}`;
+      postTitle.textContent = firstLetterCapitalize(`${postData.title}`);
 
       let postDescription = document.createElement("p");
       postDescription.classList.add("postDescription");
-      postDescription.textContent = `${postData.body}`;
+      postDescription.textContent = firstLetterCapitalize(`${postData.body}`);
 
       postContainer.appendChild(post);
       post.appendChild(postInfo);
-      post.appendChild(circle)
+      post.appendChild(circle);
       postInfo.appendChild(postTitle);
       postInfo.appendChild(postDescription);
     }
@@ -58,14 +60,38 @@ return letter.charAt(0).toUpperCase()+letter.splice(0)
   //   console.log(fetchData())
   fetchData();
 
+  function loaderShowing() {
+    let loading = document.querySelector(".loading");
+    isLoading = true;
+    loading.classList.add("show");
+    setTimeout(() => {
+      loading.classList.remove("show");
+      setTimeout(() => {
+        currentPage++;
+        fetchData();
+      }, 500);
+      isLoading = false;
+    }, 1000);
+  }
+
+  function filterData(e) {
+    let enteredInput = e.target.value;
+    enteredInput = enteredInput.charAt(0).toUpperCase() + enteredInput.slice(1);
+  }
+
+  search.addEventListener("input", filterData);
+
   window.addEventListener("scroll", () => {
     if (isFetching || !hasMore) {
       return;
     }
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-    //   console.log("Touched Bottom");
-    // fetchData();
-
+    if (
+      window.innerHeight + window.scrollY >=
+      document.documentElement.scrollHeight - 10
+    ) {
+      //   alert("Touched Bottom");
+      loaderShowing();
+        fetchData();
     }
   });
 });
