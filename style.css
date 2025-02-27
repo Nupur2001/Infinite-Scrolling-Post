@@ -119,3 +119,28 @@ h1 {
     transform: translateY(0);
   }
 }
+@media (max-width: 768px) {
+  .postTitle {
+    font-size: 1.95rem;
+  }
+
+  .postContainer {
+    max-width: 600px;
+  }
+
+  .circle {
+    left: -15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .postTitle {
+    font-size: 1.95rem;
+  }
+  .postContainer {
+    max-width: 360px;
+  }
+  .circle {
+    left: 0;
+  }
+}
