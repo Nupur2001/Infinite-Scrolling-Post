@@ -75,30 +75,30 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function filterData(e) {
+    let found=false
     let enteredInput =
       e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
     let allPosts = document.querySelectorAll(".post");
     allPosts.forEach((post) => {
-      let postTitle = document
-        .querySelector(".postTitle")
-        .innerText.toUpperCase();
+      let postTitle = post.querySelector(".postTitle").innerText.toUpperCase();
 
-      let postDescription = document
+      let postDescription = post
         .querySelector(".postDescription")
         .innerText.toUpperCase();
-
       if (
-        postTitle.indexOf(enteredInput) > -1 ||
-        postDescription.indexOf(enteredInput) > -1
+        postTitle.includes(enteredInput.toUpperCase()) ||
+        postDescription.includes(enteredInput.toUpperCase())
       ) {
+        found=true
         post.style.display = "flex";
       } else {
         post.style.display = "none";
-        postContainer.innerHTML=`<h2>No post found!!</h2>`
-        var newLocation = window.location;
-        setInterval(()=>{
-            newLocation
-        },1000)
+      }
+      if (!found) {
+        postContainer.innerHTML = `<h2>No post found!!</h2>`;
+        setInterval(() => {
+          window.location.reload();
+        }, 2000);
       }
     });
     // console.log(enteredInput)
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       //   alert("Touched Bottom");
       loaderShowing();
-      fetchData();
+      //   fetchData();
     }
   });
 });
