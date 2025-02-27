@@ -78,11 +78,16 @@ h1 {
 }
 
 .loading {
+  position: fixed;
+  bottom: 50px;
+  left: 750px;
   display: flex;
   gap: 12px;
   opacity: 0;
+  z-index: 1;
 }
 .loading div {
+  /* margin: 10px 0; */
   width: 20px;
   height: 20px;
   background-color: #fff;
@@ -90,8 +95,8 @@ h1 {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   animation: cycle 1s ease-in-out infinite;
 }
-.loading.show{
-    opacity: 1;
+.loading.show {
+  opacity: 1;
 }
 
 .loading div:nth-child(1) {
