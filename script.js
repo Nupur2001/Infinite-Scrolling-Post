@@ -2,14 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let search = document.querySelector(".search");
   let postContainer = document.querySelector(".postContainer");
 
-  // let url = "https://jsonplaceholder.typicode.com/posts";
-
   let currentPage = 1;
   let numPost = 5;
   let postNumber = 1;
   let isFetching = false;
   let hasMore = true;
-  let isLoading = false;
 
   function firstLetterCapitalize(letter) {
     return letter.charAt(0).toUpperCase() + letter.slice(1);
@@ -58,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   //   console.log(fetchData())
   fetchData();
+  let isLoading = false;
 
   function loaderShowing() {
     let loading = document.querySelector(".loading");
@@ -74,9 +72,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function filterData(e) {
-    let found=false
+    let found = false;
     let enteredInput =
-      e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
+    //   e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
+    e.target.value.toUpperCase()
     let allPosts = document.querySelectorAll(".post");
     allPosts.forEach((post) => {
       let postTitle = post.querySelector(".postTitle").innerText.toUpperCase();
@@ -85,10 +84,10 @@ document.addEventListener("DOMContentLoaded", () => {
         .querySelector(".postDescription")
         .innerText.toUpperCase();
       if (
-        postTitle.includes(enteredInput.toUpperCase()) ||
-        postDescription.includes(enteredInput.toUpperCase())
+        postTitle.includes(enteredInput) ||
+        postDescription.includes(enteredInput)
       ) {
-        found=true
+        found = true;
         post.style.display = "flex";
       } else {
         post.style.display = "none";
@@ -116,6 +115,6 @@ document.addEventListener("DOMContentLoaded", () => {
       //   alert("Touched Bottom");
       loaderShowing();
     }
-    //fetchData();
-});
+    // fetchData();
+  });
 });
