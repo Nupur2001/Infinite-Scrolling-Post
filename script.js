@@ -58,24 +58,25 @@ document.addEventListener("DOMContentLoaded", () => {
   let isLoading = false;
 
   function loaderShowing() {
+    let loaderBox = document.querySelector(".loaderBox");
     let loading = document.querySelector(".loading");
     isLoading = true;
-    loading.classList.add("show");
+    loaderBox.classList.add("show");
     setTimeout(() => {
-      loading.classList.remove("show");
+      loaderBox.classList.remove("show");
       setTimeout(() => {
         currentPage++;
         // fetchData();
-      }, 500);
+      }, 100);
       isLoading = false;
-    }, 1000);
+    }, 200);
   }
 
   function filterData(e) {
     let found = false;
     let enteredInput =
-    //   e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
-    e.target.value.toUpperCase()
+      //   e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
+      e.target.value.toUpperCase();
     let allPosts = document.querySelectorAll(".post");
     allPosts.forEach((post) => {
       let postTitle = post.querySelector(".postTitle").innerText.toUpperCase();
@@ -93,12 +94,12 @@ document.addEventListener("DOMContentLoaded", () => {
         post.style.display = "none";
       }
     });
-      if (!found) {
-        postContainer.innerHTML = `<h2>No post found!!</h2>`;
-        setInterval(() => {
-          window.location.reload();
-        }, 2000);
-      }
+    if (!found) {
+      postContainer.innerHTML = `<h2>No post found!!</h2>`;
+      setInterval(() => {
+        window.location.reload();
+      }, 2000);
+    }
     // console.log(enteredInput)
   }
 
