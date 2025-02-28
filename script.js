@@ -64,8 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       loading.classList.remove("show");
       setTimeout(() => {
-        // currentPage++;
-        fetchData();
+        currentPage++;
+        // fetchData();
       }, 500);
       isLoading = false;
     }, 1000);
@@ -74,8 +74,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function filterData(e) {
     let found = false;
     let enteredInput =
-    //   e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
-    e.target.value.toUpperCase()
+      //   e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
+      e.target.value.toUpperCase();
     let allPosts = document.querySelectorAll(".post");
     allPosts.forEach((post) => {
       let postTitle = post.querySelector(".postTitle").innerText.toUpperCase();
@@ -94,9 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       if (!found) {
         postContainer.innerHTML = `<h2>No post found!!</h2>`;
-        setInterval(() => {
-          window.location.reload();
-        }, 2000);
       }
     });
     // console.log(enteredInput)
@@ -114,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       //   alert("Touched Bottom");
       loaderShowing();
+      fetchData();
     }
-    // fetchData();
   });
 });
